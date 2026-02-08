@@ -1,0 +1,44 @@
+{
+  "name": "WishlistItem",
+  "description": "User wishlist item for saved product alternatives",
+  "type": "object",
+  "properties": {
+    "product_title": {
+      "type": "string",
+      "description": "Product title"
+    },
+    "product_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Product page URL"
+    },
+    "price": {
+      "type": "string",
+      "description": "Display price string"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Product image URL"
+    },
+    "source_site": {
+      "type": "string",
+      "description": "Retailer name e.g. Amazon, eBay"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes e.g. similar to X"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email of user who added the item (for RLS)"
+    }
+  },
+  "required": ["product_title", "product_url", "created_by"],
+  "rls": {
+    "create": true,
+    "read": { "created_by": "{{user.email}}" },
+    "update": { "created_by": "{{user.email}}" },
+    "delete": { "created_by": "{{user.email}}" }
+  }
+}
